@@ -23,8 +23,8 @@ Esta aplicação se encontra em desenvolvimento, e toda a parte de estilo e vali
 
 ### Captura de Tela
 
-![desktop-design](https://user-images.githubusercontent.com/33231886/178043470-4221f4e4-5d5a-4dfd-89ba-0d75a9cee0fa.jpg)
-![mobile-design](https://user-images.githubusercontent.com/33231886/178043471-20675dcc-97a5-4ca3-8939-a0df1486c9f5.jpg)
+![desktop-design](./screenshot/desktop-design.jpg)
+![mobile-design](./screenshot/mobile-design.jpg)
 ### Links
 
 - URL da Solução : [Dash.go](https://dashgo-next-chakra-ui.vercel.app/)
