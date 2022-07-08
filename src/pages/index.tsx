@@ -1,5 +1,5 @@
 
-import { Button, Flex, Stack } from '@chakra-ui/react'
+import { Box, Button, Flex, Stack, Text } from '@chakra-ui/react'
 import { SubmitHandler, useForm } from "react-hook-form";
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from "yup";
@@ -39,7 +39,25 @@ export default function SignIn() {
       h='100vh'
       align='center'
       justify='center'
+      flexDir='column'
     >
+      <Box>
+        <Text
+          fontSize='4xl'
+          fontWeight='bold'
+          letterSpacing='tight'
+          mb='5'
+        >
+          dashgo
+          <Text 
+            as='span' 
+            ml='1' 
+            color='pink.500'
+          >
+            .
+          </Text>
+        </Text>
+      </Box>
       <Flex
         as='form'
         width='100%'
