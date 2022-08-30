@@ -16,7 +16,7 @@ import {
   useBreakpointValue
 } from '@chakra-ui/react'
 import Link from 'next/link'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { useQuery } from 'react-query'
 
 import { RiAddLine, RiPencilLine } from 'react-icons/ri'
@@ -24,31 +24,11 @@ import { Header } from '../../components/Header'
 import { Pagination } from '../../components/Pagination'
 import { SiderBar } from '../../components/SideBar'
 import { api } from '../../services/api'
+import { useUsers } from '../../services/hooks/useUsers'
 
 export default function UserList() {
-  const { data, isLoading, isFetching, error } = useQuery(
-    'users',
-    async () => {
-      const { data } = await api.get('/users')
-
-      const users = data.users.map(user => {
-        return {
-          id: user.id,
-          name: user.name,
-          email: user.email,
-          createdAt: new Date(user.createdAt).toLocaleDateString('pt-BR', {
-            day: '2-digit',
-            month: 'long',
-            year: 'numeric'
-          })
-        }
-      })
-      return users
-    },
-    {
-      staleTime: 1000 * 5 // durante 5 segundos ela nao precisa de fazer refresh
-    }
-  )
+  const [page, setPage] = useState(1)
+  const { data, isLoading, isFetching, error } = useUsers(page)
 
   const isWideVersion = useBreakpointValue({
     base: false,
@@ -106,7 +86,7 @@ export default function UserList() {
                   </Tr>
                 </Thead>
                 <Tbody>
-                  {data.map(user => {
+                  {data.users.map(user => {
                     return (
                       <Tr key={user.id}>
                         <Td px={['4', '4', '6']}>
@@ -143,7 +123,11 @@ export default function UserList() {
                 </Tbody>
               </Table>
 
-              <Pagination />
+              <Pagination
+                totalCountOfRegisters={data.totalCount}
+                currentPage={page}
+                onPageChange={setPage}
+              />
             </>
           )}
         </Box>
